@@ -27,4 +27,35 @@ public class Television {
         return tvChannel;
     }
 
+    public void turnOn() {
+        if (!isOn) {
+            this.isOn = true;
+            System.out.println("TV is turning on...");
+        } else {
+            System.out.println("TV is already turned on");
+        }
+    }
+
+    public void turnOff() {
+        if (isOn) {
+            this.isOn = false;
+            System.out.println("TV is turning off...");
+        } else {
+            System.out.println("TV is already turned off");
+        }
+    }
+
+    public int increaseVolume() {
+        if (this.volume < 10) {
+            this.volume++;
+        }
+        return this.volume;
+    }
+
+    public int decreaseVolume() {
+        if (this.volume > 0) {
+            this.volume--;
+        }
+        return this.volume;
+    }
 }
