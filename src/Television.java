@@ -2,13 +2,13 @@ public class Television {
     private String model;
     private boolean isOn;
     private int volume;
-    private TvChannel[] tvChannel;
+    private TvChannel[] tvChannels;
 
     public Television(String model) {
         this.model = model;
         this.isOn = false;
         this.volume = 5;
-        this.tvChannel = new TvChannel[10];
+        this.tvChannels = new TvChannel[10];
     }
 
     public String getModel() {
@@ -23,8 +23,8 @@ public class Television {
         return volume;
     }
 
-    public TvChannel[] getTvChannel() {
-        return tvChannel;
+    public TvChannel[] getTvChannels() {
+        return tvChannels;
     }
 
     public void turnOn() {
@@ -46,16 +46,41 @@ public class Television {
     }
 
     public int increaseVolume() {
+        if(!isOn){
+            System.out.println("Turn the TV first");
+            return -1;
+        }
         if (this.volume < 10) {
+            System.out.println("Volume is increasing...");
             this.volume++;
         }
         return this.volume;
     }
 
     public int decreaseVolume() {
+        if(!isOn){
+            System.out.println("Turn the TV first");
+            return -1;
+        }
         if (this.volume > 0) {
+            System.out.println("Volume is decreasing...");
             this.volume--;
         }
         return this.volume;
+    }
+
+    public void changeChannel(int channelNumber) {
+        if(!isOn){
+            System.out.println("Turn the TV first");
+            return;
+        }
+        for (int i = 0; i < tvChannels.length; i++) {
+            String chName = tvChannels[i].getChannelName();
+            if (channelNumber == tvChannels[i].getChannelNumber()) {
+                System.out.println("Switching on the " + chName + " channel");
+                return;
+            }
+        }
+        System.out.println(channelNumber + " doesn't exist");
     }
 }
